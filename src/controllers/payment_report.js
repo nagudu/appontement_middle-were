@@ -1,11 +1,24 @@
 import db from "../models";
 export const payment_report = (req, res) => {
     const {
-        customer_id = "", name = "", shop_no = "", year = "", amount_paid = "", discription = "",
+         name = "", shop_no = "", year = "", amount_paid = "", discription = "",
     } = req.body;
+    const {custormer_id}=req.query
     db.sequelize.query(`insert into payment_report(customer_id,name,shop_no,year,amount_paid,discription) 
-    VALUES("${customer_id}","${name}","${shop_no}","${year}","${amount_paid}","${discription}")`)
-        .then((results) => res.json({ sucsess: true, results: results }))
+    VALUES("${custormer_id}","${name}","${shop_no}","${year}","${amount_paid}","${discription}")`)
+        .then((results) => {
+            db.sequelize.query(`insert into report_history(custormer_id,month,shop_no,description,amount_paid,withdrawn)
+        values(
+        "${custormer_id}","${year}","${shop_no}","${discription}","${amount_paid}","0"
+        )`)  .then(()=>{
+
+            console.log({ success: true, results });
+          })
+          .catch((err) => {
+            console.log(err);
+            res.status(500).json({ success: false, err });
+          });
+            res.json({ sucsess: true, results: results })})
         .catch((err) => console.log(err))
 }
 

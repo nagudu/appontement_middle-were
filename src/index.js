@@ -38,6 +38,10 @@ require('./routes/user.js')(app);
 require('./routes/shop_registration')(app);
 require('./routes/pay_rent')(app);
 require('./routes/payment_report')(app);
+require('./routes/setting')(app);
+require('./routes/tenant')(app);
+require('./routes/manager')(app);
+require('./routes/plaza')(app);
 
 //create a server
 var server = app.listen(port, function() {

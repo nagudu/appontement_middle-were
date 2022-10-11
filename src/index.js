@@ -42,6 +42,7 @@ require('./routes/setting')(app);
 require('./routes/tenant')(app);
 require('./routes/manager')(app);
 require('./routes/plaza')(app);
+require('./routes/plaza_phases')(app);
 
 //create a server
 var server = app.listen(port, function() {

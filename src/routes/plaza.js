@@ -1,4 +1,4 @@
-import { getPlaza, plaza,getPlazaList } from "../controllers/plaza";
+import { getPlaza, plaza,getPlazaList,getPlazaPhaseList } from "../controllers/plaza";
 
 module.exports =(app) =>{
     app.post("/plaza",plaza)

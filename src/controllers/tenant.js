@@ -12,9 +12,18 @@ name ="", phone_no ="", email ="", address ="", picture = ""
             console.log(err)
             res.status(500).json({ err })});
 }
-export const getTenant = (req, res) => {
+export const getTenantList = (req, res) => {
     
     db.sequelize.query(`SELECT  * from tenant`)
+    .then((results) => res.json({ success: true, results }))
+        .catch((err) => {
+            console.log(err)
+            res.status(500).json({ err })});
+}
+
+export const getTenant = (req, res) => {
+    const {id}=req.query
+    db.sequelize.query(`SELECT  * from tenant where id=${id}`)
     .then((results) => res.json({ success: true, results }))
         .catch((err) => {
             console.log(err)

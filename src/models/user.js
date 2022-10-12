@@ -1,6 +1,6 @@
 export default (sequelize, DataTypes) => {
   const User = sequelize.define(
-    'User',
+    'user',
     {
       firstname: DataTypes.STRING,
       lastname: DataTypes.STRING,

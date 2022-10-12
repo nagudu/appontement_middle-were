@@ -38,7 +38,9 @@ const {phase_id=0}=req.query
 
 export const getPhaseShops = (req, res) => {
     const {phase_id=0}=req.query
-        db.sequelize.query(`SELECT * FROM shop_tenants  WHERE phase_id=${phase_id}`)
+    const sql = phase_id?`SELECT * FROM shop_tenants  WHERE phase_id=${phase_id}`
+    :''
+        db.sequelize.query(sql)
             .then((results) => res.json({ success: true, results: results[0] }))
             .catch((err) => console.log(err))
     }

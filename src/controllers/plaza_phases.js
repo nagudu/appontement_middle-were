@@ -38,7 +38,9 @@ export const plaza_phases = (req, res) => {
                     res.status(500).json({ err })});
         }
         export const getPlazaPhaseList = (req, res) => {
-            db.sequelize.query(`SELECT  * from plaza_phases`)
+            const {plaza_id} = req.query
+            const sql = plaza_id?`SELECT  * from plaza_phases WHERE plaza_id=${plaza_id}`:''
+            db.sequelize.query(sql)
             .then((results) => res.json({ success: true, results: results[0] }))
                 .catch((err) => {
                     console.log(err)

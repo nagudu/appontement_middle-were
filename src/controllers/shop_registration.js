@@ -9,28 +9,13 @@ export const shop_registration = (req, res) => {
                 }
     })
         .then((results) => {
-            // db.sequelize.query(`insert into report_history(custormer_id,month,shop_no,description,amount_paid,withdrawn)
-            // values(
-            // "${shop_no}","${rent_end_date}","${shop_no}","${amount_paid}","${withdrawn}"
-            // )`,{
-            //     replacements:{
-            //         name, rent_fee, code, rent_start_date, rent_end_date,tenant_id, phase_id
-            //     }
-            // })  .then(()=>{
-
-            //     console.log({ success: true, results });
-            //   })
-            //   .catch((err) => {
-            //     console.log(err);
-            //     res.status(500).json({ success: false, err });
-            //   });
             res.json({ success: true, results: results })
         })
         .catch((err) => console.log(err))
 }
 
 export const getShopList = (req, res) => {
-const {phase_id=0}=req.query
+// const {phase_id=0}=req.query
     db.sequelize.query(`SELECT * FROM shops_list`)
         .then((results) => res.json({ success: true, results: results[0] }))
         .catch((err) => console.log(err))
@@ -38,9 +23,8 @@ const {phase_id=0}=req.query
 
 export const getPhaseShops = (req, res) => {
     const {phase_id=0}=req.query
-    const sql = phase_id?`SELECT * FROM shop_tenants  WHERE phase_id=${phase_id}`
-    :''
-        db.sequelize.query(sql)
+    if(phase_id)
+        db.sequelize.query(`SELECT * FROM shops_list  WHERE phase_id=${phase_id}`)
             .then((results) => res.json({ success: true, results: results[0] }))
             .catch((err) => console.log(err))
     }

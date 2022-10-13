@@ -1,5 +1,4 @@
-const {shop_registration, getShop_registration,getShopList,
-    getPhaseShops} = require("../controllers/shop_registration")
+const {shop_registration, getShop_registration,getShopList,getPhaseShops} = require("../controllers/shop_registration")
 
 module.exports = (app) => {
     app.post("/create_shop",shop_registration)

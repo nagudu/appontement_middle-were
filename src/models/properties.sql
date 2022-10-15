@@ -84,6 +84,22 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `tenants` (IN `query_type` VARCHAR(3
     END IF;
 END$$
 
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `agent_request`(IN `query_type` VARCHAR(30), IN `_name` VARCHAR(30), IN `_phone_no` VARCHAR(15), IN `_email` VARCHAR(60), IN `_address` VARCHAR(100), IN `_picture` VARCHAR(200), IN `_user_id` INT(5)) NOT DETERMINISTIC CONTAINS SQL SQL SECURITY DEFINER BEGIN
+    
+    IF query_type = 'create' THEN 
+    	INSERT INTO agents(name,phone_no,email,address,picture, user_id)		
+		VALUES (_name,_phone_no,_email,_address,_picture, _user_id);
+        
+    ELSEIF query_type ='select-all' THEN
+    	SELECT * FROM agents;
+    
+    ELSEIF query_type ='select-one' THEN
+    	SELECT * FROM agents WHERE id = _id;
+    END IF;
+    
+END $$
+
 DELIMITER ;
 
 -- --------------------------------------------------------
@@ -91,17 +107,18 @@ DELIMITER ;
 --
 -- Table structure for table `agents`
 --
-
 CREATE TABLE `agents` (
-  `id` int(100) NOT NULL,
-  `name` varchar(100) NOT NULL,
-  `phone_no` varchar(15) DEFAULT NULL,
-  `email` varchar(100) NOT NULL,
-  `address` varchar(200) NOT NULL,
-  `picture` varchar(100) NOT NULL,
-  `user_id` int(4) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
+ `id` int(100) NOT NULL AUTO_INCREMENT,
+ `name` varchar(100) NOT NULL,
+ `phone_no` varchar(15) DEFAULT NULL,
+ `email` varchar(100) NOT NULL,
+ `address` varchar(200) NOT NULL,
+ `picture` varchar(100) NOT NULL,
+ `user_id` int(4) DEFAULT NULL,
+ PRIMARY KEY (`id`),
+ KEY `user_id` (`user_id`),
+ CONSTRAINT `agent_user_fk` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4
 -- --------------------------------------------------------
 
 --

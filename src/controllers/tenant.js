@@ -55,8 +55,7 @@ export const getTenant = (req, res) => {
 }
 
 export const getTenantShops = (req, res) => {
-	const { tenant_id=null, name = "", phone_no = "", email = "", address = "", picture = "", deposite = 0, rent_start_date = '', rent_end_date = '', shops = [], query_type=''} =  req.query
-
+	const { tenant_id=null, name = "", phone_no = "", email = "", address = "", picture = "", deposite = 0,query_type=''} =  req.query
 	db.sequelize.query(`CALL  tenants(:query_type,:tenant_id,:name,:phone_no,:email,:address,:picture,:deposite)`, {
 		replacements: {
 			query_type, name, phone_no, email, address, picture, deposite,tenant_id

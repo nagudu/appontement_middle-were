@@ -1,13 +1,10 @@
 import express from 'express';
 import passport from 'passport';
-import bodyParser from 'body-parser';
 import cors from 'cors';
 import models from './models'
 
-const app = express();
-
-app.use(bodyParser.json());
-
+const app = express()
+app.use(express.json({ limit: '50mb' }));
 let port = process.env.PORT || 34567;
 
 // set the view engine to ejs
@@ -43,9 +40,10 @@ require('./routes/tenant')(app);
 require('./routes/manager')(app);
 require('./routes/plaza')(app);
 require('./routes/plaza_phases')(app);
+require('./routes/agents')(app);
 
 //create a server
-var server = app.listen(port, function() {
+var server = app.listen(port, function () {
   var host = server.address().address;
   var port = server.address().port;
 

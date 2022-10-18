@@ -5,6 +5,7 @@ export default (sequelize, DataTypes) => {
       firstname: DataTypes.STRING,
       lastname: DataTypes.STRING,
       username: DataTypes.STRING,
+      phone_no: { type: DataTypes.STRING, unique: true },
       email: DataTypes.STRING,
       password: DataTypes.STRING,
       role: DataTypes.STRING,
@@ -12,7 +13,7 @@ export default (sequelize, DataTypes) => {
     {}
   );
 
-  User.associate = function(models) {
+  User.associate = function (models) {
     // associations go here
   };
 

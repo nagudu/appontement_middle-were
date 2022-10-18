@@ -6,3 +6,4 @@ ALTER TABLE `payment_report` CHANGE `shop_no` `shop_id` INT(8) NULL DEFAULT NULL
 ALTER TABLE `plaza` CHANGE `no_of_shop` `no_of_shop` INT(8) NOT NULL, CHANGE `manager_id` `manager_id` INT(8) NOT NULL;
 ALTER TABLE `plaza_phases` CHANGE `no_of_shops` `no_of_shops` INT(5) NOT NULL DEFAULT 0;
 ALTER TABLE `users` CHANGE `createdAt` `createdAt` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP, CHANGE `updatedAt` `updatedAt` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP; 
+ALTER TABLE `tenants` CHANGE `picture` `picture` LONGTEXT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL;

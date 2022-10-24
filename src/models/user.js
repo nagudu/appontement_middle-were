@@ -6,7 +6,7 @@ export default (sequelize, DataTypes) => {
       lastname: DataTypes.STRING,
       username: DataTypes.STRING,
       phone_no: { type: DataTypes.STRING, unique: true },
-      email: DataTypes.STRING,
+      email: { type: DataTypes.STRING, unique: true },
       password: DataTypes.STRING,
       role: DataTypes.STRING,
     },

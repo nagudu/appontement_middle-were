@@ -38,7 +38,7 @@ require('./routes/payment_report')(app);
 require('./routes/setting')(app);
 require('./routes/tenant')(app);
 require('./routes/manager')(app);
-require('./routes/plaza')(app);
+require('./routes/plazas')(app);
 require('./routes/plaza_phases')(app);
 require('./routes/agents')(app);
 
